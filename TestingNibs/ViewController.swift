@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var customView: CustomView!
+    @IBOutlet weak var customView: CustomView! {
+        didSet {
+            customView.label.text = "Bananas"
+        }
+    }
 }
 

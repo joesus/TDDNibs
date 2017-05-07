@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 class CustomView : UIView {
+    @IBOutlet weak var label: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,8 +25,8 @@ class CustomView : UIView {
     }
     
     private func loadNib() {
-        let bundle = Bundle(for: CustomView.self)
-        if let view = bundle.loadNibNamed("CustomView", owner: nil)?.first as? UIView {
+        let bundle  = Bundle(for: type(of: self))
+        if let view = bundle.loadNibNamed("CustomView", owner: self)?.first as? UIView {
             view.frame = bounds
             addSubview(view)
         }
@@ -37,3 +38,4 @@ class CustomView : UIView {
         loadNib()
     }
 }
+

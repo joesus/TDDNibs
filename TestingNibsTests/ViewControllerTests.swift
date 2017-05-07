@@ -28,4 +28,25 @@ class ViewControllerTests: XCTestCase {
                        "customView on ViewController should be correct size")
     }
     
+    func testViewControllerCanSetCustomViewLabel() {
+        guard let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateInitialViewController() as? ViewController
+            else {
+                XCTFail("Could not instantiate vc from Main storyboard")
+                return
+        }
+        vc.loadViewIfNeeded()
+        
+        guard let customView = vc.customView else {
+            XCTFail("ViewController should have outlet set for customView")
+            return
+        }
+        
+        guard let label = customView.label else {
+            return XCTFail("CustomView should load from storyboard with label")
+        }
+        
+        XCTAssertEqual(label.text, "Bananas",
+                       "CustomView label should be settable from ViewController")
+    }
 }
